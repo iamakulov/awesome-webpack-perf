@@ -4,25 +4,25 @@
 
 ## Contents
 
-- Built-in stuff
-- JS minifiers
-- CSS
-  - Minifiers
-  - Other optimizers
-  - Extraction plugins
-  - Critical CSS plugins
-- CSS-in-JS
-  - Minification
-- Images
-  - Image compression tools
-  - Other tools
-- Service workers
-- Preloading and preconnecting
-- Prerender
-- Progressive web apps (PWA)
-- Analysis tools
-- Build-time audit tools
-- Other web performance lists
+- [Built-in stuff](#built-in-stuff)
+- [JS minifiers](#js-minifiers)
+- [CSS](#css)
+  - [Minifiers](#minifiers)
+  - [Other optimizers](#other-optimizers)
+  - [Extraction plugins](#extraction-plugins)
+  - [Critical CSS plugins](#critical-css-plugins)
+- [CSS-in-JS](#css-in-js)
+  - [Minification](#minification)
+- [Images](#images)
+  - [Image compression tools](#image-compression-tools)
+  - [Other tools](#other-tools)
+- [Service workers](#service-workers)
+- [Preloading and preconnecting](#preloading-and-preconnecting)
+- [Prerender](#prerender)
+- [Progressive web apps (PWA)](#progressive-web-apps-pwa)
+- [Analysis tools](#analysis-tools)
+- [Build-time audit tools](#build-time-audit-tools)
+- [Other web performance lists](#other-web-performance-lists)
 
 ## Built-in stuff
 
