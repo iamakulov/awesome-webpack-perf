@@ -17,9 +17,10 @@
   - [Image compression tools](#image-compression-tools)
   - [Other tools](#other-tools)
 - [Fonts](#fonts)
+- [Gzip/Brotli](#gzip-brotli)
 - [Service workers](#service-workers)
-- [Preloading and preconnecting](#preloading-and-preconnecting)
-- [Prerender](#prerender)
+- [`<link rel>` and `<script async>`](#link-rel-and-script-async)
+- [Prerendering](#prerendering)
 - [Progressive web apps (PWA)](#progressive-web-apps-pwa)
 - [Analysis tools](#analysis-tools)
 - [Build-time audit tools](#build-time-audit-tools)
@@ -128,6 +129,15 @@ You should prefer plugins over loaders. Plugins will optimize images that were p
 - [`google-fonts-webpack-plugin`](https://www.npmjs.com/package/google-fonts-webpack-plugin) downloads Google Fonts to the build directory for self-hosting
 - [`fontmin-webpack`](https://www.npmjs.com/package/fontmin-webpack) minifies icon fonts to just what’s used
 
+## Gzip/Brotli
+
+Gzip/Brotli compressors compress text so it takes less space when served over network.
+
+Normally, this is done by a server like Apache or Nginx on runtime; but you might want to pre-build compressed assets to save the runtime cost.
+
+- [`compression-webpack-plugin`](https://www.npmjs.com/package/compression-webpack-plugin) works for Gzip and Brotli
+- [`brotli-webpack-plugin`](https://www.npmjs.com/package/brotli-webpack-plugin) works for Brotli
+
 ## Service workers
 
 Both plugins below generate a service worker that prefetches all webpack assets in the background and adds offline support into the application:
@@ -135,14 +145,15 @@ Both plugins below generate a service worker that prefetches all webpack assets 
 - [`workbox-webpack-plugin`](https://www.npmjs.com/package/workbox-webpack-plugin) prefetches all webpack assets in the background and makes the app ready for working offline. It is based on the Google’s [`workbox`](https://developers.google.com/web/tools/workbox) library that simplifies common usages of service workers
 - [`offline-plugin`](https://www.npmjs.com/package/offline-plugin) also prefetches all webpack assets in the background and makes the app ready for working offline. It falls back to AppCache in browsers that don’t support service workers
 
-## Preloading and preconnecting
+## `<link rel>` and `<script async>`
 
 - [`preload-webpack-plugin`](https://www.npmjs.com/package/preload-webpack-plugin) preloads asynchronous chunks¹ with `<link rel="preload">` or `<link rel="prefetch">`
 - [`html-webpack-preconnect-plugin`](https://www.npmjs.com/package/html-webpack-preconnect-plugin) adds `<link rel="preconnect">` for a separate domain (e.g., an API server)
+- [`script-ext-html-webpack-plugin`](https://www.npmjs.com/package/script-ext-html-webpack-plugin) adds `async` or `defer` attributes to bundle scripts
 
 ¹ [Asynchronous chunks](https://webpack.js.org/guides/code-splitting/#dynamic-imports) are chunks that are created when you use dynamic `import()`
 
-## Prerender
+## Prerendering
 
 Prerendering tools run an app during the build and return the HTML the app generates. This is an alternative to server-side rendering and helps to deliver the content to the user immediately – instead of making them wait until the bundle is loaded.
 
