@@ -163,7 +163,7 @@ Prerendering tools run an app during the build and return the HTML the app gener
 
 - [Webpack Analyse](https://github.com/webpack/analyse) shows all modules present in the bundle – and relationships between them. Use it to understand why a specific suspicious module is bundled:
 
-  ![](https://user-images.githubusercontent.com/2953267/66723321-4970bc80-ee20-11e9-8176-f9a1e534e3d4.png)
+  ![](https://user-images.githubusercontent.com/2953267/66723475-3c54cd00-ee22-11e9-96ff-751ba888d56d.png)
 
 - [Bundlephobia](https://bundlephobia.com) reports bundle sizes of JS libraries:
 
