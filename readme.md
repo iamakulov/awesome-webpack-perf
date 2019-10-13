@@ -153,13 +153,13 @@ Prerendering tools run an app during the build and return the HTML the app gener
 
   ![](https://cloud.githubusercontent.com/assets/302213/20628702/93f72404-b338-11e6-92d4-9a365550a701.gif)
 
-  <sub>(Animation credits: `webpack-bundle-analyzer`)</sub>
+  <sup>(Animation credits: `webpack-bundle-analyzer`)</sup>
 
 - [`source-map-explorer`](https://www.npmjs.com/package/source-map-explorer) also generates a view of the bundle contents. It’s less detailed than `webpack-bundle-analyzer` but only needs a source map to run:
 
   ![](https://raw.githubusercontent.com/danvk/source-map-explorer/HEAD/screenshot.png)
 
-  <sub>(Image credits: `source-map-explorer`)</sub>
+  <sup>(Image credits: `source-map-explorer`)</sup>
 
 - [Webpack Analyse](https://github.com/webpack/analyse) shows all modules present in the bundle – and relationships between them. Use it to understand why a specific suspicious module is bundled:
 
@@ -175,13 +175,13 @@ Prerendering tools run an app during the build and return the HTML the app gener
 
   ![](https://camo.githubusercontent.com/3f5446837855aef7cb671a3c0ca6b9d351cf8045/687474703a2f2f692e696d6775722e636f6d2f714c3664584a642e706e67)
 
-  <sub>(Image credits: `webpack-dashboard`)</sub>
+  <sup>(Image credits: `webpack-dashboard`)</sup>
 
 - [`duplicate-package-checker-webpack-plugin`](https://github.com/darrenscerri/duplicate-package-checker-webpack-plugin) prints a warning if a bundle includes multiple versions of the same library:
 
   ![](https://raw.githubusercontent.com/darrenscerri/duplicate-package-checker-webpack-plugin/master/screenshot.png)
 
-  <sub>(Image credits: `duplicate-package-checker-webpack-plugin`)</sub>
+  <sup>(Image credits: `duplicate-package-checker-webpack-plugin`)</sup>
 
 ## Other web performance lists
 
