@@ -16,6 +16,7 @@
 - [Images](#images)
   - [Image compression tools](#image-compression-tools)
   - [Other tools](#other-tools)
+- [Fonts](#fonts)
 - [Service workers](#service-workers)
 - [Preloading and preconnecting](#preloading-and-preconnecting)
 - [Prerender](#prerender)
@@ -121,6 +122,11 @@ You should prefer plugins over loaders. Plugins will optimize images that were p
 - [`webp-loader`](https://www.npmjs.com/package/webp-loader) converts images to webp
 - [`responsive-loader`](https://www.npmjs.com/package/responsive-loader) resizes one image to multiple various sizes. Works great with `<img srcset>` or `<picture>`
 - [`svg-url-loader`](https://www.npmjs.com/package/svg-url-loader) generates 20-30% smaller `data`-urls for inline SVG images
+
+## Fonts
+
+- [`google-fonts-webpack-plugin`](https://www.npmjs.com/package/google-fonts-webpack-plugin) downloads Google Fonts to the build directory for self-hosting
+- [`fontmin-webpack`](https://www.npmjs.com/package/fontmin-webpack) minifies icon fonts to just what’s used
 
 ## Service workers
 
