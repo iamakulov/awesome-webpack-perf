@@ -62,7 +62,7 @@ There’re three popular competing CSS minifiers: _CSSO_, _CSS Nano_ and _Clean 
 
 ### Other optimizers
 
-- [`purgecss-webpack-plugin`](https://github.com/FullHuman/purgecss-webpack-plugin) analyzes the app code and styles and removes CSS rules that aren’t used anywhere. Works great with CSS frameworks like Bootstrap
+- [`purgecss-webpack-plugin`](https://www.npmjs.com/package/purgecss-webpack-plugin) analyzes the app code and styles and removes CSS rules that aren’t used anywhere. Works great with CSS frameworks like Bootstrap
 
 ### Extraction plugins
 
@@ -76,9 +76,9 @@ By default (with a simple `style-loader`), all styles imported in the app are ad
 
 Critical CSS is an approach for rendering the site faster. With Critical CSS, for each page, you extract rules needed for the initial render and inline them. Then, you load the remaining styles asynchronously. TODO: link to more details
 
-- [`html-critical-webpack-plugin`](https://github.com/anthonygore/html-critical-webpack-plugin) runs the [`critical`](https://www.npmjs.com/package/critical) tool on every webpack build. Uses a headless browser, returns styles only for [the above-the-fold content](https://whatis.techtarget.com/definition/above-the-fold)
-- [`critters`](https://github.com/GoogleChromeLabs/critters) renders HTML in a JSDom environment on every webpack build. Doesn’t use a headless browser (= less heavy); returns all styles needed by the page, not only the above-the-fold ones (= may fix some `html-critical-webpack-plugin` glitches)
-- [`isomorphic-style-loader`](https://github.com/kriasoft/isomorphic-style-loader) helps to extract critical styles during server-side rendering
+- [`html-critical-webpack-plugin`](https://www.npmjs.com/package/html-critical-webpack-plugin) runs the [`critical`](https://www.npmjs.com/package/critical) tool on every webpack build. Uses a headless browser, returns styles only for [the above-the-fold content](https://whatis.techtarget.com/definition/above-the-fold)
+- [`critters-webpack-plugin`](https://www.npmjs.com/package/critters-webpack-plugin) renders HTML in a JSDom environment on every webpack build. Doesn’t use a headless browser (= less heavy); returns all styles needed by the page, not only the above-the-fold ones (= may fix some `html-critical-webpack-plugin` glitches)
+- [`isomorphic-style-loader`](https://www.npmjs.com/package/isomorphic-style-loader) helps to extract critical styles during server-side rendering
 
 ## CSS-in-JS
 
@@ -94,16 +94,16 @@ they still need minification.
 
 ### Minification
 
-- [`minify-cssinjs-loader`](https://github.com/zaaack/minify-cssinjs-loader) works with all CSS-in-JS libraries thanks to regex-based matching. Does basic compression of style strings
+- [`minify-cssinjs-loader`](https://www.npmjs.com/package/minify-cssinjs-loader) works with all CSS-in-JS libraries thanks to regex-based matching. Does basic compression of style strings
 - _Library-specific Babel plugins_. Many popular CSS-in-JS libraries have Babel plugins specifically created for them. They typically do a better job at optimization:
-  - [babel-plugin-styled-components](https://github.com/styled-components/babel-plugin-styled-components)
+  - [babel-plugin-styled-components](https://www.npmjs.com/package/babel-plugin-styled-components)
   - [babel-plugin-emotion](https://www.npmjs.com/package/babel-plugin-emotion)
 
 ## Images
 
 ### Image compression tools
 
-All the tools below use [`imagemin`](https://github.com/imagemin/imagemin) and imagemin plugins for optimizing images, so they typically provide the same level of compression.
+All the tools below use [`imagemin`](https://www.npmjs.com/package/imagemin) and imagemin plugins for optimizing images, so they typically provide the same level of compression.
 
 You should prefer plugins over loaders. Plugins will optimize images that were produced by other loaders or plugins, whereas loaders will only trigger for files from your source code.
 
@@ -145,7 +145,7 @@ Prerendering tools run an app during the build and return the HTML the app gener
 
 ## Progressive web apps (PWA)
 
-- [`webpack-pwa-manifest`](https://github.com/arthurbergmz/webpack-pwa-manifest) generates a `manifest.json` and resizes app icons for a PWA
+- [`webpack-pwa-manifest`](https://www.npmjs.com/package/webpack-pwa-manifest) generates a `manifest.json` and resizes app icons for a PWA
 
 ## Analysis tools
 
@@ -171,13 +171,13 @@ Prerendering tools run an app during the build and return the HTML the app gener
 
 ## Build-time audit tools
 
-- [`webpack-dashboard`](https://github.com/FormidableLabs/webpack-dashboard) reports sizes of modules and warnings like duplicated files during development:
+- [`webpack-dashboard`](https://www.npmjs.com/package/webpack-dashboard) reports sizes of modules and warnings like duplicated files during development:
 
   ![](https://camo.githubusercontent.com/3f5446837855aef7cb671a3c0ca6b9d351cf8045/687474703a2f2f692e696d6775722e636f6d2f714c3664584a642e706e67)
 
   <sup>(Image credits: `webpack-dashboard`)</sup>
 
-- [`duplicate-package-checker-webpack-plugin`](https://github.com/darrenscerri/duplicate-package-checker-webpack-plugin) prints a warning if a bundle includes multiple versions of the same library:
+- [`duplicate-package-checker-webpack-plugin`](https://www.npmjs.com/package/duplicate-package-checker-webpack-plugin) prints a warning if a bundle includes multiple versions of the same library:
 
   ![](https://raw.githubusercontent.com/darrenscerri/duplicate-package-checker-webpack-plugin/master/screenshot.png)
 
