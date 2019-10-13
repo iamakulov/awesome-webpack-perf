@@ -17,7 +17,7 @@
   - [Image compression tools](#image-compression-tools)
   - [Other tools](#other-tools)
 - [Fonts](#fonts)
-- [Gzip/Brotli](#gzip-brotli)
+- [Gzip/Brotli](#gzipbrotli)
 - [Service workers](#service-workers)
 - [`<link rel>` and `<script async>`](#link-rel-and-script-async)
 - [Prerendering](#prerendering)
