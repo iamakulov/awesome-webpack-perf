@@ -136,7 +136,7 @@ Both plugins below generate a service worker that prefetches all webpack assets 
 
 - [`workbox-webpack-plugin`](https://www.npmjs.com/package/workbox-webpack-plugin) prefetches all webpack assets in the background and makes the app ready for working offline. It is based on Google’s [`workbox`](https://developers.google.com/web/tools/workbox) library that simplifies common usages of service workers
 - [`offline-plugin`](https://www.npmjs.com/package/offline-plugin) also prefetches all webpack assets in the background and makes the app ready for working offline. It falls back to AppCache in browsers that don’t support service workers
-- [`@flexis/workbox-webpack-plugin`](https://www.npmjs.com/package/service-worker-loader) same as [`workbox-webpack-plugin`](https://www.npmjs.com/package/workbox-webpack-plugin), but for [`service-worker-loader`](https://www.npmjs.com/package/service-worker-loader)
+- [`@flexis/workbox-webpack-plugin`](https://www.npmjs.com/package/@flexis/workbox-webpack-plugin) same as [`workbox-webpack-plugin`](https://www.npmjs.com/package/workbox-webpack-plugin), but for [`service-worker-loader`](https://www.npmjs.com/package/service-worker-loader)
 
 ## `<link rel>` and `<script async>`
 
