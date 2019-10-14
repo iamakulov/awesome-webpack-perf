@@ -38,7 +38,7 @@ JS minifiers are tools that make JS payloads smaller.
 - [`uglifyjs-webpack-plugin`](https://www.npmjs.com/package/uglifyjs-webpack-plugin) – Uglify is an ES5 minifier
 - [`terser-webpack-plugin`](https://www.npmjs.com/package/terser-webpack-plugin) – Terser is a fork of Uglify that has support for ES2015+. Ships with webpack
 - [`babel-minify-webpack-plugin`](https://www.npmjs.com/package/babel-minify-webpack-plugin) – Babel Minify is a minifier built in the Babel pipeline. It supports all syntax Babel supports
-- [`closure-webpack-plugin`](https://www.npmjs.com/package/closure-webpack-plugin) – Closure Compiler is a minifier developed by Google. It has several advanced optimization that are unsafe for some apps but compress better
+- [`closure-webpack-plugin`](https://www.npmjs.com/package/closure-webpack-plugin) – Closure Compiler is a minifier developed by Google. It has several advanced optimizations that are unsafe for some apps but compress better
 
 ## CSS
 
@@ -46,7 +46,7 @@ JS minifiers are tools that make JS payloads smaller.
 
 CSS minifiers are tools that make the volume of CSS smaller.
 
-There’re three popular competing CSS minifiers: _CSSO_, _CSS Nano_ and _Clean CSS_. They’re mostly similar in the compression quality and supported features, so if you’re picking one, just choose one you prefer more.
+There’re three popular competing CSS minifiers: _CSSO_, _CSS Nano_ and _Clean CSS_. They’re mostly similar in the compression quality and supported features, so if you’re picking one, just choose the one you prefer more.
 
 - **CSSO** ![](https://img.shields.io/npm/dw/csso):
 
@@ -76,7 +76,7 @@ By default (with a simple `style-loader`), all styles imported in the app are ad
 
 ### Critical CSS plugins
 
-Critical CSS is an approach for rendering the site faster. With Critical CSS, for each page, you extract rules needed for the initial render and inline them. Then, you load the remaining styles asynchronously. TODO: link to more details
+Critical CSS is an approach for rendering the site faster. With Critical CSS, for each page, you extract the rules needed for the initial render and inline them. Then, you load the remaining styles asynchronously. TODO: link to more details
 
 - [`html-critical-webpack-plugin`](https://www.npmjs.com/package/html-critical-webpack-plugin) runs the [`critical`](https://www.npmjs.com/package/critical) tool on every webpack build. Uses a headless browser, returns styles only for [the above-the-fold content](https://whatis.techtarget.com/definition/above-the-fold)
 - [`critters-webpack-plugin`](https://www.npmjs.com/package/critters-webpack-plugin) renders HTML in a JSDom environment on every webpack build. Doesn’t use a headless browser (= less heavy); returns all styles needed by the page, not only the above-the-fold ones (= may fix some `html-critical-webpack-plugin` glitches)
@@ -84,15 +84,7 @@ Critical CSS is an approach for rendering the site faster. With Critical CSS, fo
 
 ## CSS-in-JS
 
-CSS-in-JS libraries typically provide Critical CSS support out of the box and need less optimizations. However, if you write CSS-in-JS styles in JS strings:
-
-```js
-const buttonStyles = css`
-  color: red;
-`;
-```
-
-they still need minification.
+CSS-in-JS libraries typically provide Critical CSS support out of the box and need fewer manual optimizations. However, they still need minification.
 
 ### Minification
 
@@ -105,7 +97,7 @@ they still need minification.
 
 ### Image compression tools
 
-All the tools below use [`imagemin`](https://www.npmjs.com/package/imagemin) and imagemin plugins for optimizing images, so they typically provide the same level of compression.
+All the tools below use [`imagemin`](https://www.npmjs.com/package/imagemin) and imagemin plugins for optimizing images, so they typically result in a similar level of compression.
 
 You should prefer plugins over loaders. Plugins will optimize images that were produced by other loaders or plugins, whereas loaders will only trigger for files from your source code.
 
@@ -131,7 +123,7 @@ You should prefer plugins over loaders. Plugins will optimize images that were p
 
 ## Gzip/Brotli
 
-Gzip/Brotli compressors compress text so it takes less space when served over network.
+Gzip/Brotli compressors compress text so it’s smaller when served over the network.
 
 Normally, this is done by a server like Apache or Nginx on runtime; but you might want to pre-build compressed assets to save the runtime cost.
 
@@ -142,7 +134,7 @@ Normally, this is done by a server like Apache or Nginx on runtime; but you migh
 
 Both plugins below generate a service worker that prefetches all webpack assets in the background and adds offline support into the application:
 
-- [`workbox-webpack-plugin`](https://www.npmjs.com/package/workbox-webpack-plugin) prefetches all webpack assets in the background and makes the app ready for working offline. It is based on the Google’s [`workbox`](https://developers.google.com/web/tools/workbox) library that simplifies common usages of service workers
+- [`workbox-webpack-plugin`](https://www.npmjs.com/package/workbox-webpack-plugin) prefetches all webpack assets in the background and makes the app ready for working offline. It is based on Google’s [`workbox`](https://developers.google.com/web/tools/workbox) library that simplifies common usages of service workers
 - [`offline-plugin`](https://www.npmjs.com/package/offline-plugin) also prefetches all webpack assets in the background and makes the app ready for working offline. It falls back to AppCache in browsers that don’t support service workers
 
 ## `<link rel>` and `<script async>`
