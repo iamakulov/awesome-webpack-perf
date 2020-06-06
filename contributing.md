@@ -8,16 +8,15 @@ project you agree to abide by its terms.
 
 Please ensure that:
 
-- The submitted tool is actually related to webpack and not just web performance in general.
+- The submitted tool is related to webpack – not to web performance in general.
 
-   If the tool is not related to webpack, you may want to submit it to the [`awesome-wpo`](https://github.com/davidsonfellipe/awesome-wpo) or [`webpack-libs-optimizations`](https://github.com/GoogleChromeLabs/webpack-libs-optimizations) repos.
+  If the tool is not related to webpack, you may want to submit it to the [`awesome-wpo`](https://github.com/davidsonfellipe/awesome-wpo) or [`webpack-libs-optimizations`](https://github.com/GoogleChromeLabs/webpack-libs-optimizations) repos.
 
 - The submitted plugin or loader has at least 1000+ weekly downloads.
 
-   There’re lots of useful tools out there, but including every webpack plugin into this repo will actually make it less helpful! To ensure the list stays helpful for most people, we’ve set the downloads limit as the acceptance criterion.
+  There’re lots of useful tools out there, but including every webpack plugin into this repo will actually make it less helpful! To ensure the list stays helpful for most people, we’ve set the downloads limit as the acceptance criterion.
 
 Thank you for your suggestions!
-
 
 ## Updating your PR
 
