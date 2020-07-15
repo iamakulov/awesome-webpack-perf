@@ -1,3 +1,5 @@
+![](https://user-images.githubusercontent.com/2953267/87531172-0044e600-c69a-11ea-952b-695fb6db8705.png)
+
 # Awesome Webpack Perf [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
 > A curated list of webpack tools and plugins that help make the web faster
