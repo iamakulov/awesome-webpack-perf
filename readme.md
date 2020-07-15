@@ -30,6 +30,7 @@
   - [Bundle contents](#bundle-contents)
   - [Code duplicates](#code-duplicates)
   - [Various tools](#various-tools)
+  - [Webpack analysis plugin](#webpack-analysis-plugin)
 - [Build-time audit tools](#build-time-audit-tools)
 - [Other web performance lists](#other-web-performance-lists)
 
@@ -243,6 +244,16 @@ These tools help to find and remove duplicated code inside the bundles:
   ![](https://camo.githubusercontent.com/3f5446837855aef7cb671a3c0ca6b9d351cf8045/687474703a2f2f692e696d6775722e636f6d2f714c3664584a642e706e67)
 
   <sup>(Image credits: `webpack-dashboard`)</sup>
+
+### Webpack analysis plugin
+
+The following tools show how to optimize your webpack build speed.
+
+- [`speed-measure-webpack-plugin`](https://www.npmjs.com/package/speed-measure-webpack-plugin) is a webpack plugin. During the build, the plugin measures your webpack build speed, giving an output like this:
+
+  ![](https://raw.githubusercontent.com/stephencookdev/speed-measure-webpack-plugin/master/preview.png)
+
+<sup>(Animation credits: `speed-measure-webpack-plugin`)</sup>
 
 ## Other web performance lists
 
