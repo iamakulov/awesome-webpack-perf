@@ -15,6 +15,7 @@
   - [Critical CSS plugins](#critical-css-plugins)
 - [CSS-in-JS](#css-in-js)
   - [Minification](#minification)
+  - [Zero-runtime libraries](#zero-runtime-libraries)
 - [Images](#images)
   - [Image compression tools: universal](#image-compression-tools-universal)
   - [Image compression tools: for a single format](#image-compression-tools-for-a-single-format)
@@ -46,6 +47,7 @@ JS minifiers are tools that make JS payloads smaller.
 - [`terser-webpack-plugin`](https://www.npmjs.com/package/terser-webpack-plugin) – Terser is a fork of Uglify that has support for ES2015+. Ships with webpack
 - [`babel-minify-webpack-plugin`](https://www.npmjs.com/package/babel-minify-webpack-plugin) – Babel Minify is a minifier built in the Babel pipeline. It supports all syntax Babel supports
 - [`closure-webpack-plugin`](https://www.npmjs.com/package/closure-webpack-plugin) – Closure Compiler is a minifier developed by Google. It has several advanced optimizations that are unsafe for some apps but compress better
+- [`esbuild-webpack-plugin`](https://www.npmjs.com/package/esbuild-webpack-plugin) – ESBuild is a JS&TS compiler/minifier written in Go. It’s ~50-100× faster [compared to native JavaScript tools](https://github.com/evanw/esbuild#javascript-benchmark).
 
 ## CSS
 
@@ -91,14 +93,23 @@ Critical CSS is an approach for rendering the site faster. With Critical CSS, fo
 
 ## CSS-in-JS
 
-CSS-in-JS libraries typically provide Critical CSS support out of the box and need fewer manual optimizations. However, they still need minification.
-
 ### Minification
+
+CSS-in-JS libraries typically provide Critical CSS support out of the box and need fewer manual optimizations. However, they still need minification.
 
 - [`minify-cssinjs-loader`](https://www.npmjs.com/package/minify-cssinjs-loader) works with all CSS-in-JS libraries thanks to regex-based matching. Does basic compression of style strings
 - _Library-specific Babel plugins_. Many popular CSS-in-JS libraries have Babel plugins specifically created for them. They typically do a better job at optimization:
   - [babel-plugin-styled-components](https://www.npmjs.com/package/babel-plugin-styled-components)
   - [babel-plugin-emotion](https://www.npmjs.com/package/babel-plugin-emotion)
+
+### Zero-runtime libraries
+
+Most CSS-in-JS libraries ship with a runtime – a chunk of JavaScript that runs in the browser and makes the library work. That makes them easy to use but [brings noticeable performance costs](https://css-tricks.com/the-unseen-performance-costs-of-modern-css-in-js-libraries/).
+
+However, there’re also several CSS-in-JS libraries that don’t use a runtime and don’t suffer from worse performance. They rely on build-time transformations instead:
+
+- [`linaria`](https://www.npmjs.com/package/linaria): works with `linaria/loader` and `mini-css-extract-plugin` ([instructions](https://github.com/callstack/linaria/blob/master/docs/BUNDLERS_INTEGRATION.md#webpack))
+- [`astroturf`](https://www.npmjs.com/package/astroturf): works with `astroturf/loader` and `mini-css-extract-plugin` ([instructions](https://github.com/4Catalyzer/astroturf#setup))
 
 ## Images
 
