@@ -14,7 +14,8 @@
 - [CSS-in-JS](#css-in-js)
   - [Minification](#minification)
 - [Images](#images)
-  - [Image compression tools](#image-compression-tools)
+  - [Image compression tools: universal](#image-compression-tools-universal)
+  - [Image compression tools: for a single format](#image-compression-tools-for-a-single-format)
   - [Other tools](#other-tools)
 - [Fonts](#fonts)
 - [Gzip/Brotli](#gzipbrotli)
@@ -23,6 +24,9 @@
 - [Prerendering](#prerendering)
 - [Progressive web apps (PWA)](#progressive-web-apps-pwa)
 - [Analysis tools](#analysis-tools)
+  - [Bundle contents](#bundle-contents)
+  - [Code duplicates](#code-duplicates)
+  - [Various tools](#various-tools)
 - [Build-time audit tools](#build-time-audit-tools)
 - [Other web performance lists](#other-web-performance-lists)
 
@@ -30,6 +34,7 @@
 
 - [`mode: 'production'`](https://webpack.js.org/configuration/mode/) in the webpack config enables the common production optimizations
 - [`optimization.splitChunks`](https://webpack.js.org/plugins/split-chunks-plugin/) in the webpack config enables splitting one bundle into smaller chunks. This helps to load less JS for each page and cache better
+- [`optimization.runtimeChunk`](https://webpack.js.org/configuration/optimization/#optimizationruntimechunk) in the webpack config enables splitting webpack’s runtime code into a separate chunk. This improves long-term caching
 
 ## JS minifiers
 
@@ -76,7 +81,7 @@ By default (with a simple `style-loader`), all styles imported in the app are ad
 
 ### Critical CSS plugins
 
-Critical CSS is an approach for rendering the site faster. With Critical CSS, for each page, you extract the rules needed for the initial render and inline them. Then, you load the remaining styles asynchronously. TODO: link to more details
+Critical CSS is an approach for rendering the site faster. With Critical CSS, for each page, you extract the rules needed for the initial render and inline them. Then, you load the remaining styles asynchronously. [More details](https://3perf.com/talks/web-perf-101/#critical-css)
 
 - [`html-critical-webpack-plugin`](https://www.npmjs.com/package/html-critical-webpack-plugin) runs the [`critical`](https://www.npmjs.com/package/critical) tool on every webpack build. Uses a headless browser, returns styles only for [the above-the-fold content](https://whatis.techtarget.com/definition/above-the-fold)
 - [`critters-webpack-plugin`](https://www.npmjs.com/package/critters-webpack-plugin) renders HTML in a JSDom environment on every webpack build. Doesn’t use a headless browser (= less heavy); returns all styles needed by the page, not only the above-the-fold ones (= may fix some `html-critical-webpack-plugin` glitches)
@@ -95,16 +100,24 @@ CSS-in-JS libraries typically provide Critical CSS support out of the box and ne
 
 ## Images
 
-### Image compression tools
+### Image compression tools: universal
 
-All the tools below use [`imagemin`](https://www.npmjs.com/package/imagemin) and imagemin plugins for optimizing images, so they typically result in a similar level of compression.
+All the tools below optimize `.png`, `.jpg`, `.gif` and `.svg` images. They’re based on [`imagemin`](https://www.npmjs.com/package/imagemin) and imagemin plugins, so they typically result in a similar level of compression.
 
-You should prefer plugins over loaders. Plugins will optimize images that were produced by other loaders or plugins, whereas loaders will only trigger for files from your source code.
+Pick plugins over loaders. Plugins will optimize images that were produced by other loaders or plugins, whereas loaders will only trigger for files from your source code.
 
 - [`image-webpack-loader`](https://www.npmjs.com/package/image-webpack-loader) ![](https://img.shields.io/npm/dw/image-webpack-loader)
 - [`img-loader`](https://www.npmjs.com/package/img-loader) ![](https://img.shields.io/npm/dw/img-loader)
 - [`imagemin-webpack`](https://www.npmjs.com/package/imagemin-webpack) ![](https://img.shields.io/npm/dw/imagemin-webpack)
 - [`imagemin-webpack-plugin`](https://www.npmjs.com/package/imagemin-webpack-plugin) ![](https://img.shields.io/npm/dw/imagemin-webpack-plugin)
+
+### Image compression tools: for a single format
+
+The below tools focus on a specific format of images.
+
+- [`svgo-loader`](https://www.npmjs.com/package/svgo-loader) optimizes `.svg` images by passing them through [`svgo`](https://github.com/svg/svgo)
+- [`svg-sprite-loader`](https://www.npmjs.com/package/svg-sprite-loader) combines multiple `.svg` images into a single sprite
+- [`webp-loader`](https://www.npmjs.com/package/webp-loader) converts images to the `webp` format
 
 ### Other tools
 
@@ -112,7 +125,6 @@ You should prefer plugins over loaders. Plugins will optimize images that were p
 
   ![](https://i.imgur.com/uBsYSNd.png)
 
-- [`webp-loader`](https://www.npmjs.com/package/webp-loader) converts images to webp
 - [`responsive-loader`](https://www.npmjs.com/package/responsive-loader) resizes one image to multiple various sizes. Works great with `<img srcset>` or `<picture>`
 - [`svg-url-loader`](https://www.npmjs.com/package/svg-url-loader) generates 20-30% smaller `data`-urls for inline SVG images
 
@@ -132,9 +144,16 @@ Normally, this is done by a server like Apache or Nginx on runtime; but you migh
 
 ## Service workers
 
-Both plugins below generate a service worker that prefetches all webpack assets in the background and adds offline support into the application:
+- [`service-worker-loader`](https://www.npmjs.com/package/service-worker-loader) takes a file, emits it separately from the bundle, and exports a function to register the file as a service worker:
+
+  ```js
+  import registerServiceWorker from 'service-worker-loader!./sw.js';
+
+  registerServiceWorker({ scope: '/' });
+  ```
 
 - [`workbox-webpack-plugin`](https://www.npmjs.com/package/workbox-webpack-plugin) prefetches all webpack assets in the background and makes the app ready for working offline. It is based on Google’s [`workbox`](https://developers.google.com/web/tools/workbox) library that simplifies common usages of service workers
+
 - [`offline-plugin`](https://www.npmjs.com/package/offline-plugin) also prefetches all webpack assets in the background and makes the app ready for working offline. It falls back to AppCache in browsers that don’t support service workers
 
 ## `<link rel>` and `<script async>`
@@ -143,7 +162,7 @@ Both plugins below generate a service worker that prefetches all webpack assets 
 - [`html-webpack-preconnect-plugin`](https://www.npmjs.com/package/html-webpack-preconnect-plugin) adds `<link rel="preconnect">` for a separate domain (e.g., an API server)
 - [`script-ext-html-webpack-plugin`](https://www.npmjs.com/package/script-ext-html-webpack-plugin) adds `async` or `defer` attributes to bundle scripts
 
-¹ [Asynchronous chunks](https://webpack.js.org/guides/code-splitting/#dynamic-imports) are chunks that are created when you use dynamic `import()`
+<small>¹ [Asynchronous chunks](https://webpack.js.org/guides/code-splitting/#dynamic-imports) are chunks that are created when you use `import()`.</small>
 
 ## Prerendering
 
@@ -158,17 +177,45 @@ Prerendering tools run an app during the build and return the HTML the app gener
 
 ## Analysis tools
 
-- [`webpack-bundle-analyzer`](https://www.npmjs.com/package/webpack-bundle-analyzer) generates a view of the bundle content. Use it to figure out what takes so much size in the bundle:
+### Bundle contents
+
+The following tools show relative sizes of all bundled modules. Use them to figure out what takes so much size and can be removed:
+
+- [`webpack-bundle-analyzer`](https://www.npmjs.com/package/webpack-bundle-analyzer) is a webpack plugin. During the build, it generates an interactive HTML page with all bundle modules:
 
   ![](https://cloud.githubusercontent.com/assets/302213/20628702/93f72404-b338-11e6-92d4-9a365550a701.gif)
 
   <sup>(Animation credits: `webpack-bundle-analyzer`)</sup>
 
-- [`source-map-explorer`](https://www.npmjs.com/package/source-map-explorer) also generates a view of the bundle contents. It’s less detailed than `webpack-bundle-analyzer` but only needs a source map to run:
+- [Webpack Visualizer](https://chrisbateman.github.io/webpack-visualizer/) is a website that operates on webpack stats (`webpack --json > stats.json`). It lets you upload the `stats.json` file and see the bundle contents:
+
+  ![](https://user-images.githubusercontent.com/2953267/84274060-16f69b00-ab38-11ea-8338-e17f38fa6335.png)
+
+- [`source-map-explorer`](https://www.npmjs.com/package/source-map-explorer) is a CLI tool that generates bundle stats based on source maps. It’s less detailed than `webpack-bundle-analyzer` – but you don’t need to reconfigure webpack to run it:
 
   ![](https://raw.githubusercontent.com/danvk/source-map-explorer/HEAD/screenshot.png)
 
   <sup>(Image credits: `source-map-explorer`)</sup>
+
+- [`bundle-wizard`](https://www.npmjs.com/package/bundle-wizard) is a CLI tool that also generates bundle stats based on source maps. But, unlike `source-map-explorer`, it does that for a full page and includes all bundles:
+
+  ![](https://user-images.githubusercontent.com/2953267/84275303-9173ea80-ab39-11ea-9c00-477e9c639dc1.png)
+
+### Code duplicates
+
+These tools help to find and remove duplicated code inside the bundles:
+
+- [Bundle Buddy](https://www.npmjs.com/package/bundle-buddy) shows which bundles include which module. Use it to find duplicated code and fine-tune code splitting:
+
+  ![](https://user-images.githubusercontent.com/2953267/83957155-36f33980-a86e-11ea-8fd6-44aa1b487c18.png)
+
+- [`duplicate-package-checker-webpack-plugin`](https://www.npmjs.com/package/duplicate-package-checker-webpack-plugin) prints a warning if a bundle includes multiple versions of the same library:
+
+  ![](https://raw.githubusercontent.com/darrenscerri/duplicate-package-checker-webpack-plugin/master/screenshot.png)
+
+  <sup>(Image credits: `duplicate-package-checker-webpack-plugin`)</sup>
+
+### Various tools
 
 - [Webpack Analyse](https://github.com/webpack/analyse) shows all modules present in the bundle – and relationships between them. Use it to understand why a specific suspicious module is bundled:
 
@@ -178,19 +225,11 @@ Prerendering tools run an app during the build and return the HTML the app gener
 
   ![](https://user-images.githubusercontent.com/2953267/66723322-4970bc80-ee20-11e9-8dfd-fef59fc7ef2f.png)
 
-## Build-time audit tools
-
 - [`webpack-dashboard`](https://www.npmjs.com/package/webpack-dashboard) reports sizes of modules and warnings like duplicated files during development:
 
   ![](https://camo.githubusercontent.com/3f5446837855aef7cb671a3c0ca6b9d351cf8045/687474703a2f2f692e696d6775722e636f6d2f714c3664584a642e706e67)
 
   <sup>(Image credits: `webpack-dashboard`)</sup>
-
-- [`duplicate-package-checker-webpack-plugin`](https://www.npmjs.com/package/duplicate-package-checker-webpack-plugin) prints a warning if a bundle includes multiple versions of the same library:
-
-  ![](https://raw.githubusercontent.com/darrenscerri/duplicate-package-checker-webpack-plugin/master/screenshot.png)
-
-  <sup>(Image credits: `duplicate-package-checker-webpack-plugin`)</sup>
 
 ## Other web performance lists
 
