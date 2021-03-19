@@ -230,9 +230,13 @@ These tools help to find and remove duplicated code inside the bundles:
 
 ### Various tools
 
-- [Webpack Analyse](https://github.com/webpack/analyse) shows all modules present in the bundle – and relationships between them. Use it to understand why a specific suspicious module is bundled:
+- [Webpack Analyse](https://github.com/webpack/analyse) shows all modules in the bundle – and _why_ they are bundled. Use it to understand [why you are loading that specific huge library](https://twitter.com/iamakulov/status/1337088053765140481):
 
   ![](https://user-images.githubusercontent.com/2953267/66723475-3c54cd00-ee22-11e9-96ff-751ba888d56d.png)
+  
+- [Statoscope](https://statoscope.tech) also shows all modules present in the bundle – and why they are bundled. It’s like the Webpack Analyse (the previous tool) but modern and more convenient:
+
+  ![](https://user-images.githubusercontent.com/2953267/111714862-47076300-885b-11eb-8629-6880be562a2b.png)
 
 - [Bundlephobia](https://bundlephobia.com) reports bundle sizes of JS libraries:
 
