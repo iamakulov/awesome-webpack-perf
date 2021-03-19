@@ -30,8 +30,7 @@
   - [Bundle contents](#bundle-contents)
   - [Code duplicates](#code-duplicates)
   - [Various tools](#various-tools)
-  - [Webpack analysis plugin](#webpack-analysis-plugin)
-- [Build-time audit tools](#build-time-audit-tools)
+- [Webpack build performance](#webpack-build-performance)
 - [Other web performance lists](#other-web-performance-lists)
 
 ## Built-in stuff
@@ -245,7 +244,7 @@ These tools help to find and remove duplicated code inside the bundles:
 
   <sup>(Image credits: `webpack-dashboard`)</sup>
 
-### Webpack analysis plugin
+## Webpack build performance
 
 The following tools show how to optimize your webpack build speed.
 
