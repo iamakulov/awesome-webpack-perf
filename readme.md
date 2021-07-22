@@ -238,6 +238,8 @@ These tools help to find and remove duplicated code inside the bundles:
 
   ![](https://user-images.githubusercontent.com/2953267/111714862-47076300-885b-11eb-8629-6880be562a2b.png)
 
+  Also, it provides a [stats validator](https://github.com/statoscope/statoscope/tree/master/packages/cli#validate-experimental) that helps you to validate your stats on CI.
+
 - [Bundlephobia](https://bundlephobia.com) reports bundle sizes of JS libraries:
 
   ![](https://user-images.githubusercontent.com/2953267/66723322-4970bc80-ee20-11e9-8dfd-fef59fc7ef2f.png)
